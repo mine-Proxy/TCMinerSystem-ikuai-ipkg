@@ -1,0 +1,104 @@
+name: Build iKuai ipkg
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "版本号，例如 5.0.0"
+        required: true
+        default: "5.0.0"
+      binary_url:
+        description: "二进制下载地址（留空则自动从 GitHub 拼接）"
+        required: false
+        default: ""
+      release_notes:
+        description: "更新说明"
+        required: false
+        default: "update"
+      publish_release:
+        description: "是否发布 GitHub Release"
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.event.inputs.version || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build-ipkg:
+    name: Build iKuai v4 ipkg
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Update changelog with release notes
+        shell: bash
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          RELEASE_NOTES: ${{ github.event.inputs.release_notes }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' "v${VERSION} - $(date +%Y-%m-%d)" "${RELEASE_NOTES}" "" >> /tmp/changelog.txt
+          cat packaging/ikuai-ipkg/tcminersystem/changelog >> /tmp/changelog.txt
+          mv /tmp/changelog.txt packaging/ikuai-ipkg/tcminersystem/changelog
+
+      - name: Build ipkg
+        shell: bash
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          BINARY_URL: ${{ github.event.inputs.binary_url }}
+        run: |
+          set -euo pipefail
+          bash packaging/ikuai-ipkg/build-ipkg.sh
+
+      - name: Upload ipkg artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: tcminersystem-x86_64-${{ github.event.inputs.version }}
+          path: packaging/ikuai-ipkg/*.ipkg
+
+  publish:
+    name: Publish Release
+    needs: build-ipkg
+    if: ${{ github.event.inputs.publish_release == 'true' && always() && needs.build-ipkg.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/download-artifact@v6
+        with:
+          path: release
+          name: tcminersystem-x86_64-${{ github.event.inputs.version }}
+          merge-multiple: true
+
+      - name: Generate release notes
+        shell: bash
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          RELEASE_NOTES: ${{ github.event.inputs.release_notes }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          notes_file="/tmp/release-notes.md"
+          {
+            echo "## TCMinerSystem v${VERSION}"
+            echo ""
+            echo "${RELEASE_NOTES}"
+            echo ""
+            echo "### 下载"
+            echo "- [tcminersystem-x86_64.ipkg](tcminersystem-x86_64.ipkg)"
+          } > "${notes_file}"
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2.3.3
+        with:
+          tag_name: tcminersystem-v${{ github.event.inputs.version }}
+          name: TCMinerSystem v${{ github.event.inputs.version }}
+          target_commitish: ${{ github.sha }}
+          files: release/*
+          body_path: /tmp/release-notes.md
+          prerelease: false
