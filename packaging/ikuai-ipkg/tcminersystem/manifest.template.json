@@ -1,0 +1,17 @@
+{
+    "name": "tcminersystem",
+    "version": "__TCMS_IPKG_VERSION__",
+    "display_name": "TCMinerSystem",
+    "image": "tcminersystem:ikuai",
+    "description": "矿池中转/挖矿代理工具，支持传统矿池代理和自建矿池节点，内置 Web 管理后台",
+    "type": "1",
+    "maintainer": "mine-Proxy",
+    "maintainer_url": "https://github.com/mine-Proxy/TCMinerSystem",
+    "distributor": "mine-Proxy",
+    "distributor_url": "https://github.com/mine-Proxy/TCMinerSystem",
+    "requirements": {
+        "memory": "128MB",
+        "storage": "100MB",
+        "os_min_version": "4.0.0"
+    }
+}

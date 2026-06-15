@@ -1,0 +1,17 @@
+TCMinerSystem - 矿池中转/挖矿代理工具
+
+支持传统矿池代理和自建矿池节点，内置 Web 管理后台。
+可自定义费率、支持 RMS 加密传输、多币种挖矿。
+
+使用方法:
+安装后通过 http://<设备IP>:1314 访问管理界面
+默认后台账号密码为 qzpm19kkx xloqslz913
+
+功能:
+- 矿池代理（抽水）
+- 自建矿池节点
+- RMS 加密压缩传输
+- 多币种支持
+- Web 管理后台
+
+项目地址: https://github.com/mine-Proxy/TCMinerSystem
