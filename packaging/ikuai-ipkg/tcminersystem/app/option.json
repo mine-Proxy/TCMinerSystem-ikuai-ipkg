@@ -1,0 +1,169 @@
+[
+  {
+    "default": 1800,
+    "min": 1,
+    "max": 65535,
+    "attrname": "RMS_PORT",
+    "label": {
+      "en": "RMS Port",
+      "zh": "RMS 端口"
+    },
+    "required": true,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 3333,
+    "min": 1,
+    "max": 65535,
+    "attrname": "MB_PORT",
+    "label": {
+      "en": "MB Port",
+      "zh": "MB 端口"
+    },
+    "required": true,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 1314,
+    "min": 1,
+    "max": 65535,
+    "attrname": "APP_PORT_WEB",
+    "label": {
+      "en": "Web Manager Port",
+      "zh": "Web 管理端口"
+    },
+    "required": true,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 1900,
+    "min": 1,
+    "max": 65535,
+    "attrname": "POOLNODE_PORT",
+    "label": {
+      "en": "Pool Node Port",
+      "zh": "矿池节点端口"
+    },
+    "required": true,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8001,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_1",
+    "label": {
+      "en": "Extra Port 1",
+      "zh": "额外端口1"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8002,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_2",
+    "label": {
+      "en": "Extra Port 2",
+      "zh": "额外端口2"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8003,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_3",
+    "label": {
+      "en": "Extra Port 3",
+      "zh": "额外端口3"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8004,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_4",
+    "label": {
+      "en": "Extra Port 4",
+      "zh": "额外端口4"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8005,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_5",
+    "label": {
+      "en": "Extra Port 5",
+      "zh": "额外端口5"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8006,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_6",
+    "label": {
+      "en": "Extra Port 6",
+      "zh": "额外端口6"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8007,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_7",
+    "label": {
+      "en": "Extra Port 7",
+      "zh": "额外端口7"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": 8008,
+    "min": 1,
+    "max": 65535,
+    "attrname": "EXTRA_PORT_8",
+    "label": {
+      "en": "Extra Port 8",
+      "zh": "额外端口8"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "integer"
+  },
+  {
+    "default": "tcminersystem-remote-key",
+    "attrname": "REMOTE_KEY",
+    "label": {
+      "en": "Remote Auth Key",
+      "zh": "远程认证密钥"
+    },
+    "required": false,
+    "scope": "config",
+    "type": "string"
+  }
+]

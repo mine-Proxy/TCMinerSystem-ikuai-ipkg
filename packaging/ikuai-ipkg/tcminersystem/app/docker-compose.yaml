@@ -1,0 +1,45 @@
+services:
+  tcminersystem:
+    image: tcminersystem:ikuai
+    container_name: tcminersystem-${NAME_NONCE}
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPUS_LIMIT}
+          memory: ${MEMORY_LIMIT}
+    restart: ${RESTART}
+    ports:
+      - ${HOST_IP}:${RMS_PORT}:${RMS_PORT}
+      - ${HOST_IP}:${MB_PORT}:${MB_PORT}
+      - ${HOST_IP}:${APP_PORT_WEB}:${APP_PORT_WEB}
+      - ${HOST_IP}:${POOLNODE_PORT}:${POOLNODE_PORT}
+      - ${HOST_IP}:${EXTRA_PORT_1}:8001
+      - ${HOST_IP}:${EXTRA_PORT_2}:8002
+      - ${HOST_IP}:${EXTRA_PORT_3}:8003
+      - ${HOST_IP}:${EXTRA_PORT_4}:8004
+      - ${HOST_IP}:${EXTRA_PORT_5}:8005
+      - ${HOST_IP}:${EXTRA_PORT_6}:8006
+      - ${HOST_IP}:${EXTRA_PORT_7}:8007
+      - ${HOST_IP}:${EXTRA_PORT_8}:8008
+    volumes:
+      - ./data/tcminersystem:/root/rustminersystem
+    environment:
+      REMOTE_KEY: ${REMOTE_KEY}
+      RMS_PORT: ${RMS_PORT}
+      MB_PORT: ${MB_PORT}
+      START_PORT: ${APP_PORT_WEB}
+      POOLNODE_PORT: ${POOLNODE_PORT}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - doc_app_default
+    labels:
+      createdBy: "TCMinerSystem"
+
+networks:
+  doc_app_default:
+    external: true
+    name: doc_app_default
