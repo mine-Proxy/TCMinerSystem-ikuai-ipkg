@@ -1,0 +1,7 @@
+# Packaging build artifacts
+packaging/ikuai-ipkg/.stage/
+packaging/ikuai-ipkg/*.ipkg
+
+# OS/editor noise
+.DS_Store
+*.swp
