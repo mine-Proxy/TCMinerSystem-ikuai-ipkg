@@ -13,7 +13,7 @@ MANIFEST_TEMPLATE="$PACKAGE_TEMPLATE_DIR/manifest.template.json"
 RENDER_MANIFEST_SCRIPT="$SCRIPT_DIR/render-manifest.sh"
 BINARY_DOWNLOAD_DIR="$STAGE_DIR/download"
 
-VERSION="${VERSION:-5.0.0}"
+VERSION="${VERSION:-5.0.1}"
 BINARY_URL="${BINARY_URL:-https://github.com/mine-Proxy/TCMinerSystem/raw/refs/heads/main/linux/tcstminersystem-${VERSION}}"
 
 echo "=== 构建 TCMinerSystem v${VERSION} ipkg ==="
